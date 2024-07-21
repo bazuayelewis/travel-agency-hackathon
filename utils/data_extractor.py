@@ -65,6 +65,4 @@ def extract_countries_data(countries):
     
     data_df = pd.DataFrame(flattened_data)
 
-    data_df.to_csv('data.csv', index=False)
-
     return data_df
