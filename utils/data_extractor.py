@@ -4,24 +4,56 @@ def flatten_country_data(countries):
     flattened_countries = []
 
     for country in countries:
+
+        country_code = None
+        if "idd" in country:
+            idd = country["idd"]
+            if "root" in idd and "suffixes" in idd and len(idd["suffixes"]) > 0:
+                country_code = ", ".join([idd["root"] + suffix for suffix in idd["suffixes"]])
+            elif "root" in idd:
+                country_code = idd["root"]
+
+        country_continents = None
+        if "continents" in country:
+            country_continents = ", ".join(country["continents"])
+
+        currency_codes = None
+        currency_names = None
+        currency_symbols = None
+        if "currencies" in country:
+            currency_codes = ', '.join(country["currencies"].keys())
+            currency_names = ', '.join([currency["name"] for currency in country["currencies"].values()])
+            currency_symbols = ', '.join([currency["symbol"] for currency in country["currencies"].values()])
+
+        country_capitals = None
+        if "capital" in country:
+            country_capitals = ', '.join(country["capital"])
+
+        country_languages = None
+        if "languages" in country:
+            country_languages = ', '.join(country["languages"].values())
+
+        common_native_name = country["name"]["nativeName"]["eng"]["common"] if "nativeName" in country and \
+                             "eng" in country["name"]["nativeName"] else None
+
         flattened_country = {
             "Country name": country["name"]["common"],
             "Independence": country.get("independent", None),
             "United Nation members": country.get("unMember", None),
             "startOfWeek": country.get("startOfWeek", None),
             "Official country name": country["name"]["official"],
-            "Common native name": country["name"]["nativeName"]["eng"]["common"] if "nativeName" in country and "eng" in country["name"]["nativeName"] else None,
-            "Currency code": list(country["currencies"].keys())[0] if "currencies" in country else None,
-            "Currency name": list(country["currencies"].values())[0]["name"] if "currencies" in country else None,
-            "Currency symbol": list(country["currencies"].values())[0]["symbol"] if "currencies" in country else None,
-            # "Country code": country["idd"]["root"] + country["idd"]["suffixes"][0] if "idd" in country else None,
-            "Capital": country["capital"][0] if "capital" in country else None,
+            "Common native name": common_native_name,
+            "Currency code": currency_codes,
+            "Currency name": currency_names,
+            "Currency symbol": currency_symbols,
+            "Country code": country_code,
+            "Capital": country_capitals,
             "Region": country.get("region", None),
             "Sub region": country.get("subregion", None),
-            "Languages": ", ".join(list(country["languages"].values())) if "languages" in country else None,
+            "Languages": country_languages,
             "Area": country.get("area", None),
             "Population": country.get("population", None),
-            "Continent": country["continents"][0] if "continents" in country else None
+            "Continent": country_continents
         }
         flattened_countries.append(flattened_country)
 
