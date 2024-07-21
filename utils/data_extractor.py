@@ -1,14 +1,16 @@
 import pandas as pd
+import logging
 
-def flatten_country_data(countries):
+
+def _transformation(country_data) -> list:
     flattened_countries = []
 
-    for country in countries:
+    for country in country_data:
 
         country_code = None
         if "idd" in country:
             idd = country["idd"]
-            if "root" in idd and "suffixes" in idd and len(idd["suffixes"]) > 0:
+            if "root" in idd and "suffixes" in idd:
                 country_code = ", ".join([idd["root"] + suffix for suffix in idd["suffixes"]])
             elif "root" in idd:
                 country_code = idd["root"]
@@ -33,36 +35,41 @@ def flatten_country_data(countries):
         if "languages" in country:
             country_languages = ', '.join(country["languages"].values())
 
-        common_native_name = country["name"]["nativeName"]["eng"]["common"] if "nativeName" in country and \
-                             "eng" in country["name"]["nativeName"] else None
+        common_native_name = None
+        if "name" in country:
+            names = country['name']
+            if 'nativeName' in names:
+                native_names = names['nativeName']
+                common_native_name = ", ".join(
+                [v["common"] for v in native_names.values()]
+                )
 
         flattened_country = {
-            "Country name": country["name"]["common"],
-            "Independence": country.get("independent", None),
-            "United Nation members": country.get("unMember", None),
+            "country_name": country["name"]["common"],
+            "independence": country.get("independent", None),
+            "united_nation_members": country.get("unMember", None),
             "startOfWeek": country.get("startOfWeek", None),
-            "Official country name": country["name"]["official"],
-            "Common native name": common_native_name,
-            "Currency code": currency_codes,
-            "Currency name": currency_names,
-            "Currency symbol": currency_symbols,
-            "Country code": country_code,
-            "Capital": country_capitals,
-            "Region": country.get("region", None),
-            "Sub region": country.get("subregion", None),
-            "Languages": country_languages,
-            "Area": country.get("area", None),
-            "Population": country.get("population", None),
-            "Continent": country_continents
+            "official_country_name": country["name"]["official"],
+            "common_native_name": common_native_name,
+            "currency_code": currency_codes,
+            "currency_name": currency_names,
+            "currency_symbol": currency_symbols,
+            "country_code": country_code,
+            "capital": country_capitals,
+            "region": country.get("region", None),
+            "sub_region": country.get("subregion", None),
+            "languages": country_languages,
+            "area": country.get("area", None),
+            "population": country.get("population", None),
+            "continent": country_continents
         }
         flattened_countries.append(flattened_country)
 
     return flattened_countries
 
 
-def extract_countries_data(countries):
-    flattened_data = flatten_country_data(countries)
-    
+def extract_countries_data(country_data):
+    flattened_data = _transformation(country_data)
     data_df = pd.DataFrame(flattened_data)
-
+    logging.info(f"{len(data_df)} records in dataframe!")
     return data_df
