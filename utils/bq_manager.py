@@ -1,12 +1,5 @@
 from google.cloud import bigquery
-import os
-from dotenv import load_dotenv
 import logging
-
-load_dotenv()
-# Connect to service acct
-GCS_AUTH_FILE = os.environ.get("GOOGLE_AUTH_FILE")
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GCS_AUTH_FILE
 
 
 # Set up BigQuery client
