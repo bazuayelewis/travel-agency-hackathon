@@ -36,7 +36,43 @@ This project is a submission by team-3(Data Natives) for the DEC countries_infor
 - `constants.sh`:
 - `api`:
 - `requirements.txt`:
-- `Travel_Agency.ipynb`:
+- `Travel_Agency.ipynb`:  
+  
+```BASH
+travel-agency-hackathon
+│   constants.sh
+│   dec_agency.log
+│   deploy.sh
+│   main.py
+│   raw_data_loader.py
+│   README.md
+│   requirements.txt
+│   
+├───api
+│   │   main.py
+│   │   
+│   ├───data
+│   │   │   countries_data.py
+│   │   │   data.csv
+│   │           
+│   ├───dependencies
+│   │   │   countries.py
+│   │           
+│   ├───routers
+│   │   │   api_routes.py
+│           
+├───screenshots
+│       api_server_startup.PNG
+│       swagger_ui.PNG
+│       
+├───utils
+│   │   api_manager.py
+│   │   bq_manager.py
+│   │   config.py
+│   │   data_extractor.py
+│   │   gcs_manager.py
+│   │   __init__.py
+```
 
 
 ## Prerequisites
