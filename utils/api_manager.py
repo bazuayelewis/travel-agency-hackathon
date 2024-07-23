@@ -4,7 +4,12 @@ import json
 from requests.exceptions import HTTPError
 
 # Configuring Logging
-logging.basicConfig(level=logging.INFO, filename='dec_agency.log', filemode='w', format="%(asctime)s:%(levelname)s:%(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    filename="dec_agency.log",
+    filemode="w",
+    format="%(asctime)s:%(levelname)s:%(message)s",
+)
 
 
 def get_data(url: str) -> json:

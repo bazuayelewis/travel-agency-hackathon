@@ -2,3 +2,4 @@ __pycache__
 agency-env
 dec_agency.log
 .env
+.gcloudignore
