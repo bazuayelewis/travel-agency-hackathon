@@ -59,10 +59,6 @@ travel-agency-hackathon
 │   │           
 │   ├───routers
 │   │   │   api_routes.py
-│           
-├───screenshots
-│       api_server_startup.PNG
-│       swagger_ui.PNG
 │       
 ├───utils
 │   │   api_manager.py
