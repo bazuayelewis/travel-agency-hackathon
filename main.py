@@ -1,20 +1,21 @@
+import functions_framework
+from google.cloud import storage
+import json
 from utils.config import *
-from utils.api_manager import get_data
-from utils.data_extractor import extract_countries_data
+from utils.data_extractor import *
 from utils.bq_manager import load_data_to_bigquery
-from utils.gcs_manager import *
 
 
-def main():
-    url = f"{BASE_URL}/{ENDPOINT}"
-    countries_data = get_data(url)
-    extracted_data = extract_countries_data(countries_data)
-    upload_to_gcs_bucket(
-        bucket_name=BUCKET_NAME, blob_name=BLOB_NAME, data=extracted_data
-    )
-    load_data_to_bigquery(extracted_data, TABLE_ID)
-    return extracted_data
-
-
-if __name__ == "__main__":
-    extracted_data = main()
+# Triggered by a change in a storage bucket
+@functions_framework.cloud_event
+def load_to_bigquery(cloud_event):
+    data = cloud_event.data
+    bucket_name = data["bucket"]
+    file_name = data["name"]
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+    blob = bucket.blob(file_name)
+    blob_str = blob.download_as_string()
+    country_data = json.loads(blob_str)
+    extracted_data = extract_countries_data(country_data)
+    load_data_to_bigquery(data=extracted_data, table_id=TABLE_ID)
