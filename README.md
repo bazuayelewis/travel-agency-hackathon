@@ -13,6 +13,7 @@
     - Setting up BigQuery
 - Transformation Logic
 - Testing the Pipeline
+- Testing the API Endpoint 
 - Monitoring and Logging
 - Contributing
 - License
