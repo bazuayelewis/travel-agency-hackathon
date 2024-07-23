@@ -201,16 +201,17 @@ Number of countries that have not gained independence: 55
     continent_counts
 Number of distinct continents: 8
 Countries per continent:
-    | continent| No of countries | 
-    |-----------------|-----------------|
-    | Africa	 | 58|
-    | Antarctica | 5|
-    | Asia | 50|
-    | Europe| 52|
-    | Europe, Asia| 3|
-    | North America| 41|
-    | Oceania	 | 27|
-    | South America| 14|
+| Continent       | No of countries |
+|-----------------|-----------------|
+| Africa          | 58              |
+| Antarctica      | 5               |
+| Asia            | 50              |
+| Europe          | 52              |
+| Europe, Asia    | 3               |
+| North America   | 41              |
+| Oceania         | 27              |
+| South America   | 14              |
+
 
 8. **No. of countries where the week does not start on Monday**
    ```python
