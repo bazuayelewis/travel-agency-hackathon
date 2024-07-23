@@ -33,7 +33,7 @@ We adpoted to use an ETL pipeline using majorly Google Cloud Platform services. 
 
 - `utils`: This folder contains various scripts used to interact with API, Cloud Storage and BigQuery to extract, transform and load data.
 - `delpoy.sh`: This bash script deploys an event cloud function.
-- `resources`: This folder contains images used in the README.md file.
+- `images`: This folder contains images used in the README.md file.
 - `raw_data_loader.py`: This script extracts data from an API and writes the data into a gcs bucket. It creates one if needed.
 - `main.py`: This script contains a cloud function. It is an event based function that gets triggered when an object is written to the attached cloud storage bucket. The function applies transformation logic and loads the data into the bigquery data warehouse. 
 - `constants.sh`: This is a configuration script where environment variables can be set.
