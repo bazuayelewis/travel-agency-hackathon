@@ -1,14 +1,6 @@
 from google.cloud import storage
 import logging
-import os
 import json
-from dotenv import load_dotenv
-
-load_dotenv()
-# Connect to service acct
-GCS_AUTH_FILE = os.environ.get("GOOGLE_AUTH_FILE")
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GCS_AUTH_FILE
-
 
 def _create_bucket(
     bucket_name: str,
