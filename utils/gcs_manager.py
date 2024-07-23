@@ -1,19 +1,12 @@
 from google.cloud import storage
 import logging
-import os
 import json
-from dotenv import load_dotenv
-
-load_dotenv()
-# Connect to service acct
-GCS_AUTH_FILE = os.environ.get("GOOGLE_AUTH_FILE")
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GCS_AUTH_FILE
-
+from utils.config import REGION
 
 def _create_bucket(
     bucket_name: str,
     storage_class: str = "STANDARD",
-    location: str = "europe-west1",
+    location: str = REGION,
 ):
     try:
         client = storage.Client()
