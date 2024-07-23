@@ -82,6 +82,9 @@ To access the endpoints from the browser, open the page `http://localhost:8000/d
   
 You can test all the endpoints from the Swagger UI.
 
+# Visualized data of countries
+![Visualizing countries data](./screenshots/visualisation.jpeg)
+
 ## Contributing
 
 ## License 
