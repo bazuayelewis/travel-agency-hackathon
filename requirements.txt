@@ -3,3 +3,5 @@ google-cloud-bigquery==3.25.0
 python-dotenv==1.0.1
 black==24.4.2
 pandas==2.2.2
+fastapi==0.111.1 
+uvicorn==0.30.3
