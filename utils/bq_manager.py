@@ -7,6 +7,7 @@ def load_data_to_bigquery(data, table_id: str) -> None:
     client = bigquery.Client()
     try:
         job_config = bigquery.LoadJobConfig(
+            autodetect=True,
             create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,
             write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
         )

@@ -1,6 +1,7 @@
 from google.cloud import storage
 import logging
 import os
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,12 +32,11 @@ def upload_to_gcs_bucket(
     bucket_name: str,
     blob_name: str,
     data,
-    content_type="text/csv",
-) -> str:
+    content_type="application/json",
+) -> None:
     client = _create_bucket(bucket_name)
     bucket = client.bucket(bucket_name)
     blob = bucket.blob(blob_name)
-    blob.upload_from_string(data.to_csv(), content_type=content_type)
+    blob.upload_from_string(json.dumps(data), content_type=content_type)
     logging.info(f"Successfully uploaded {blob_name} to {bucket_name} bucket")
     print("Successfully loaded to gcs bucket")
-    return f"gs://{bucket_name}/{blob_name}"
