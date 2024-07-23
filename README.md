@@ -1,6 +1,7 @@
 # travel-agency-hackathon
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
@@ -72,6 +73,7 @@ pip install -r requirements.txt
 4. Create an empty table. 
 5. Copy the table_ID
 
+
 ### Inserting your Configurations
 Update the [`constants.sh`](/constants.sh) script with your configurations.
 ```bash
@@ -101,6 +103,34 @@ source ./constants.sh
 #Run the data loading script
 python raw_data_loader.py
 ```
+
+## Transformation Logic
+
+
+## Testing the Pipeline
+
+## Testing the API Endpoint  
+A FastAPI implementation was included to perform inference on the loaded dataset to help answer the questions raised in the task's description.    
+  
+To start the API application, simply run the command below from the project parent directory.  
+  
+```BASH
+python api/main.py
+```  
+  
+This starts the application on port 8000, as shown in the screenshot below.  
+
+![API Server Startup](./screenshots/api_server_startup.PNG)  
+  
+To access the endpoints from the browser, open the page `http://localhost:8000/docs` for the Swagger UI. This opens up a page similar to the image below.  
+  
+![Swagger UI](./screenshots/swagger_ui.PNG)  
+  
+You can test all the endpoints from the Swagger UI.
+
+# Visualized data of countries
+![Visualizing countries data](./screenshots/visualisation.jpeg)
+
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Any of the collaborators would review and approve if neccessary.
