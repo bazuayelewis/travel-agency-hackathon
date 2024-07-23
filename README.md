@@ -41,7 +41,6 @@ This project is a submission by team-3(Data Natives) for the DEC countries_infor
 ```BASH
 travel-agency-hackathon
 │   constants.sh
-│   dec_agency.log
 │   deploy.sh
 │   main.py
 │   raw_data_loader.py
