@@ -1,11 +1,12 @@
 from google.cloud import storage
 import logging
 import json
+from utils.config import REGION
 
 def _create_bucket(
     bucket_name: str,
     storage_class: str = "STANDARD",
-    location: str = "europe-west1",
+    location: str = REGION,
 ):
     try:
         client = storage.Client()
